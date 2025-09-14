@@ -27,7 +27,7 @@ const App = () => {
 
   return (
     <div>
-      <div>
+      <form>
         <label htmlFor="searchBar">Search Movie</label>
         <br />
         <input
@@ -38,9 +38,9 @@ const App = () => {
           onChange={(e) => setQuery(e.target.value)}
         />
         <button onClick={handleSearch}>Search</button>
-      </div>
+      </form>
 
-      {error && <p>{error}</p>}
+      {error && <p className="error">{error}</p>}
       {movies && (
         <ul>
           {movies.map((movie, index) => (
