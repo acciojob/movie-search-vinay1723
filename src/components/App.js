@@ -7,19 +7,20 @@ const App = () => {
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
 
-  function handleSearch() {
+  function handleSearch(e) {
+    e.preventDefault();
     fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`)
-      .then((movies) => movies.json())
+      .then((res) => res.json())
       .then((data) => {
-        setMovies(data.Search);
-
         if (!data.Search) {
           setError("Invalid movie name. Please try again");
+          setMovies([]);
         } else {
+          setMovies(data.Search);
           setError("");
         }
       })
-      .catch((error) => {
+      .catch(() => {
         setError("Invalid movie name. Please try again");
         setMovies([]);
       });
@@ -41,7 +42,7 @@ const App = () => {
       </form>
 
       {error && <p className="error">{error}</p>}
-      {movies && (
+      {movies.length > 0 && (
         <ul>
           {movies.map((movie, index) => (
             <li key={index}>
