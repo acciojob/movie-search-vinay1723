@@ -13,7 +13,7 @@ const App = () => {
       .then((res) => res.json())
       .then((data) => {
         if (!data.Search) {
-          setError("Invalid movie name. Please try again");
+          setError("Invalid movie name. Please try again.");
           setMovies([]);
         } else {
           setMovies(data.Search);
@@ -21,7 +21,7 @@ const App = () => {
         }
       })
       .catch(() => {
-        setError("Invalid movie name. Please try again");
+        setError("Invalid movie name. Please try again.");
         setMovies([]);
       });
   }
